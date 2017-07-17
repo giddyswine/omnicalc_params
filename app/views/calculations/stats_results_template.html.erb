@@ -1,0 +1,45 @@
+          <h1>
+  Stats results
+</h1>
+
+<dl>
+  <dt>
+    Count
+  </dt>
+  <dd class="text">
+    <p><%=@count%></p>
+  </dd>
+
+  <dt>
+    Word Count
+  </dt>
+  <dd class="word_count">
+    <%=@word_count%>
+  </dd>
+
+  <dt>
+    Character Count (with spaces)
+  </dt>
+  <dd class="character_count_with_spaces">
+    <%=@character_count_with_spaces%>
+  </dd>
+
+  <dt>
+    Character Count (without spaces)
+  </dt>
+  <dd class="character_count_without_spaces">
+    <%=@character_count_without_spaces%>
+
+  </dd>
+
+  <dt>
+    Occurrences of <code>asdf</code>
+  </dt>
+  <dd class="occurrences">
+    <%=@occurrences%>
+  </dd>
+</dl>
+
+<a href="/word_count/new">
+  Process more text
+</a>

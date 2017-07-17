@@ -7,7 +7,7 @@
     APR
   </dt>
   <dd>
-    <%=@interest%>
+    <%=number_to_percentage(@interest, precision: 4)%>
   </dd>
 
   <dt>
@@ -21,7 +21,7 @@
     Principal
   </dt>
   <dd>
-    <%=number_to_currency(@principle)%>
+    <%=number_to_currency(@principle, precision: 2)%>
   </dd>
 
   <dt>
