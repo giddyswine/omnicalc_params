@@ -6,6 +6,15 @@ class CalculationsController < ApplicationController
         @squared_number=@user_number**2
         render("calculations/flex_square_template.html.erb")
     end
+    def flex_random
+        #incoming actions look like this [:"a_number"=>"5"]
+        #rails stores that has in a variable called params
+        @a=params["a_number"].to_i
+        @b=params["b_number"].to_i
+        @c = rand(@a..@b)
+        
+        render("calculations/flex_random_template.html.erb")
+    end
     def flex_square_root
         #incoming actions look like this [:"a_number"=>"5"]
         #rails stores that has in a variable called params
