@@ -43,7 +43,7 @@ class CalculationsController < ApplicationController
         render("calculations/square_form_template.html.erb")
     end
     def square_form_results
-        @user_number=params["the_user_number"].to_i
+        @user_number=params["user_number"].to_i
 
         render("calculations/square_form_results_template.html.erb")
     end
