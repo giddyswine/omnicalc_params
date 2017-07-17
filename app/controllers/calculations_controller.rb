@@ -17,8 +17,15 @@ class CalculationsController < ApplicationController
         #incoming actions look like this [:"a_number"=>"5"]
         #rails stores that has in a variable called params
         @interest=params["a_number"].to_i
-        @term=params["b_number"].to_i
+        @years=params["b_number"].to_i
         @principle=params["c_number"].to_i
+        @apr=@interest/10000.round(3)
+        
+        @apr=@apr/12.round(3)
+        
+        #@monthly_payment = 12
+        @monthly_payment = (@principle * (@apr) * ((1+ @apr)**(@years*12))) / (((1+@apr)**(@years*12))-1)
+        
         
         render("calculations/flex_payment_template.html.erb")
     end
