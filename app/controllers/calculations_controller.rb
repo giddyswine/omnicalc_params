@@ -82,4 +82,22 @@ class CalculationsController < ApplicationController
 
         render("calculations/square_root_form_results_template.html.erb")
     end
+    
+    
+    def random_form
+
+        render("calculations/random_form_template.html.erb")
+    end
+    def random_form_results
+        #incoming actions look like this [:"a_number"=>"5"]
+        #rails stores that has in a variable called params
+        @a=params["user_min"].to_i
+        @b=params["user_max"].to_i
+        @a=@a*10000
+        @b=@b*10000
+        @c = rand(@a..@b)
+        @c = @c/10000.round(4)
+
+        render("calculations/random_form_results_template.html.erb")
+    end
 end
