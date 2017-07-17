@@ -100,4 +100,36 @@ class CalculationsController < ApplicationController
 
         render("calculations/random_form_results_template.html.erb")
     end
+
+
+    def word_count_form
+
+        render("calculations/word_count_form_template.html.erb")
+    end
+    def word_count_results
+        @text=params["user_text"]
+        @special_word=params["user_word"]
+        
+        @word_count = @text.split.count
+        @character_count_with_spaces = @text.size
+    
+        @character_count_without_spaces = @text.count('^ ')
+        
+        @capitalizesw = @special_word.capitalize
+        @countaaaa = @text.gsub(@special_word,"aaaaa")
+        @countaaaa = @countaaaa.gsub(@capitalizesw,"aaaaa")
+        
+        @countaaaa = @countaaaa.count ("aaaaaa")
+        @counttext = @text.count ("aaaaa")
+        
+        @occurrences =  (@countaaaa-@counttext)/4       
+            
+            
+        
+        
+        
+        render("calculations/word_count_form_results_template.html.erb")
+    end
+
+
 end
