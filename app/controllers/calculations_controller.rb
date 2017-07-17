@@ -25,12 +25,13 @@ class CalculationsController < ApplicationController
     def flex_payment
         #incoming actions look like this [:"a_number"=>"5"]
         #rails stores that has in a variable called params
-        @interest=params["a_number"].to_i
+        @interest=params["a_number"]
         @years=params["b_number"].to_i
         @principle=params["c_number"].to_i
-        @apr=@interest/10000.round(3)
-        
-        @apr=@apr/12.round(3)
+        @apr=@interest.gsub(".","")
+        @apr=@apr.to_i
+        @apr= @apr/10000.round(10)
+        @apr=@apr/12
         
         #@monthly_payment = 12
         @monthly_payment = (@principle * (@apr) * ((1+ @apr)**(@years*12))) / (((1+@apr)**(@years*12))-1)
@@ -38,6 +39,29 @@ class CalculationsController < ApplicationController
         
         render("calculations/flex_payment_template.html.erb")
     end
+    def payment_form
+        render("calculations/payment_form_template.html.erb")
+    end
+    
+    def payment_form_results
+        #incoming actions look like this [:"a_number"=>"5"]
+        #rails stores that has in a variable called params
+        @interest=params["user_apr"]
+        @years=params["user_years"].to_i
+        @principle=params["user_pv"].to_i
+        @apr=@interest.gsub(".","")
+        @apr=@apr.to_i
+        @apr= @apr/10000.round(10)
+        @apr=@apr/12
+        
+       @monthly_payment = (@principle * (@apr) * ((1+ @apr)**(@years*12))) / (((1+@apr)**(@years*12))-1)
+        
+        
+        render("calculations/payment_form_results_template.html.erb")
+    end
+    
+    
+    
     def square_form
 
         render("calculations/square_form_template.html.erb")
